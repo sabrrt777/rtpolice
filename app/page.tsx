@@ -140,41 +140,41 @@ export default function PolicePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {members.map((person) => (
                 <Link key={person.id} href={`/profile/${person.id}`}>
-                  <Card className="rounded-2xl border-2 border-primary/30 bg-card/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:border-primary/60 cursor-pointer">
+                  <Card className="flex items-center gap-4 rounded-2xl border-2 border-primary/30 bg-card/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:border-primary/60 cursor-pointer p-4">
                     
-                    {/* الصورة - مربعة بحواف وظل */}
-                    <div className="relative">
-                      <div className="aspect-square rounded-2xl overflow-hidden border-4 border-primary/30 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                    {/* الصورة - يسار الكرت */}
+                    <div className="relative w-32 h-32 flex-shrink-0">
+                      <div className="w-full h-full rounded-2xl overflow-hidden border-4 border-primary/30 shadow-[0_0_15px_rgba(139,92,246,0.3)]">
                         <Image
                           src={
                             person.image ||
-                            "/placeholder.svg?height=300&width=300&query=professional police officer portrait"
+                            "/placeholder.svg?height=200&width=200&query=professional portrait"
                           }
                           alt={person.name}
-                          width={300}
-                          height={300}
+                          width={200}
+                          height={200}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      {/* أيقونة الرتبة - أسفل يمين */}
-                      <div className="absolute -bottom-4 -right-4">
-                        <div className="bg-primary/20 backdrop-blur-sm rounded-full p-3 border border-primary/30">
+                      {/* أيقونة الرتبة - أسفل يمين الصورة */}
+                      <div className="absolute -bottom-3 -right-3">
+                        <div className="bg-primary/20 backdrop-blur-sm rounded-full p-2 border border-primary/30">
                           {getRankIcon(person.category)}
                         </div>
                       </div>
                     </div>
 
-                    {/* المحتوى - تحت الصورة */}
-                    <div className="p-5 text-center">
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-xl text-white">
+                    {/* المحتوى - يمين الصورة */}
+                    <div className="flex flex-col justify-center flex-1">
+                      <CardHeader className="p-0 mb-2">
+                        <CardTitle className="text-xl font-semibold text-white">
                           {person.name}
                         </CardTitle>
                       </CardHeader>
-                      <Badge className="bg-primary/20 text-primary border-primary/50 hover:bg-primary/30 mb-3">
+                      <Badge className="bg-primary/20 text-primary border-primary/50 hover:bg-primary/30 w-fit mb-2">
                         {person.idNumber}
                       </Badge>
-                      <CardContent>
+                      <CardContent className="p-0">
                         <p className="text-white/80">{person.rank}</p>
                       </CardContent>
                     </div>
