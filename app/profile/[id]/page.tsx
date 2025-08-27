@@ -164,6 +164,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                                   </div>
                                   <div>
                                     <h4 className="font-semibold text-red-500">قناة اليوتيوب</h4>
+                                    <p className="text-sm text-white/60">المحتوى الرسمي</p>
                                   </div>
                                 </div>
                               </CardContent>
@@ -182,6 +183,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                                   </div>
                                   <div>
                                     <h4 className="font-semibold text-green-500">منصة كيك</h4>
+                                    <p className="text-sm text-white/60">البث المباشر</p>
                                   </div>
                                 </div>
                               </CardContent>
