@@ -100,36 +100,34 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
       {/* Main Content */}
       <main className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-start gap-8">
-          {/* الصورة الشخصية - يسار الكارت على الشاشات الكبيرة */}
-          <div className="hidden lg:block">
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden border-4 border-primary/30 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
-                <Image
-                  src={
-                    person.image ||
-                    "/placeholder.svg?height=300&width=300&query=professional police officer portrait"
-                  }
-                  alt={person.name}
-                  width={300}
-                  height={300}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-4 -right-4">
-                <div className="bg-primary/20 backdrop-blur-sm rounded-full p-3 border border-primary/30">
-                  {getRankIcon(person.category)}
-                </div>
-              </div>
-            </div>
-          </div>
-
           <Card className="border-primary/30 bg-card/80 backdrop-blur-sm shadow-[0_0_30px_rgba(139,92,246,0.2)]">
             <CardContent className="p-8">
-              <div className="grid grid-cols-1 gap-8">
-                
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* الصورة الشخصية */}
+                <div className="lg:col-span-1">
+                  <div className="relative">
+                    <div className="aspect-square rounded-2xl overflow-hidden border-4 border-primary/30 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
+                      <Image
+                        src={
+                          person.image ||
+                          "/placeholder.svg?height=300&width=300&query=professional police officer portrait"
+                        }
+                        alt={person.name}
+                        width={300}
+                        height={300}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute -bottom-4 -right-4">
+                      <div className="bg-primary/20 backdrop-blur-sm rounded-full p-3 border border-primary/30">
+                        {getRankIcon(person.category)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* المعلومات الشخصية */}
-                <div className="space-y-6">
+                <div className="lg:col-span-2 space-y-6">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <h2 className="text-3xl font-bold text-primary drop-shadow-[0_0_10px_rgba(139,92,246,0.3)]">
@@ -197,7 +195,6 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
               </div>
             </CardContent>
           </Card>
-          </div>
         </div>
       </main>
     </div>
