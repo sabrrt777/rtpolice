@@ -118,59 +118,64 @@ export default function PolicePage() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-12">
-        <div className="space-y-12">
-          {Object.entries(personnelData).map(([category, members]) => {
-            if (members.length === 0) return null
+  <main className="container mx-auto px-6 py-12">
+    <div className="space-y-12">
+      {Object.entries(personnelData).map(([category, members]) => {
+        if (members.length === 0) return null
 
-            return (
-              <section key={category}>
-                <div className="flex items-center gap-3 mb-6">
-                  {getRankIcon(category)}
-                  <h2 className="text-3xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-                    {getCategoryTitle(category)}
-                  </h2>
-                  <Badge variant="secondary" className="text-lg px-3 py-1 bg-primary/20 text-primary border-primary/30">
-                    {members.length} أفراد
-                  </Badge>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {members.map((person) => (
-                    <Link key={person.id} href={`/profile/${person.id}`}>
-                      <Card className="hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] transition-all duration-300 border-primary/30 bg-card/80 backdrop-blur-sm hover:border-primary/60 cursor-pointer hover:scale-105 overflow-hidden">
-                        {person.image && (
-                          <div className="relative w-full aspect-square overflow-hidden">
-                            <Image
-                              src={person.image || "/placeholder.svg"}
-                              alt={person.name}
-                              fill
-                              className="object-cover transition-transform duration-300 hover:scale-110"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                          </div>
-                        )}
-                        <CardHeader className="pb-3">
-                          <div className="space-y-2">
-                            <CardTitle className="text-xl text-white">{person.name}</CardTitle>
-                            <Badge className="bg-primary/20 text-primary border-primary/50 hover:bg-primary/30 w-fit">
-                              {person.idNumber}
-                            </Badge>
-                          </div>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-white/80 mb-3">{person.rank}</p>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            )
-          })}
-        </div>
-      </main>
+        return (
+          <section key={category}>
+            <div className="flex items-center gap-3 mb-6">
+              {getRankIcon(category)}
+              <h2 className="text-3xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                {getCategoryTitle(category)}
+              </h2>
+              <Badge variant="secondary" className="text-lg px-3 py-1 bg-primary/20 text-primary border-primary/30">
+                {members.length} أفراد
+              </Badge>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {members.map((person) => (
+                <Link key={person.id} href={`/profile/${person.id}`}>
+                  <Card className="flex flex-col lg:flex-row hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] transition-all duration-300 border-primary/30 bg-card/80 backdrop-blur-sm hover:border-primary/60 cursor-pointer hover:scale-105 overflow-hidden">
+                    
+                    {/* الصورة - يسار الكرت */}
+                    {person.image && (
+                      <div className="relative w-full lg:w-1/3 h-60 lg:h-auto overflow-hidden">
+                        <Image
+                          src={person.image || "/placeholder.svg"}
+                          alt={person.name}
+                          fill
+                          className="object-cover transition-transform duration-300 hover:scale-110"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      </div>
+                    )}
 
+                    {/* المحتوى - يمين الصورة */}
+                    <div className="flex flex-col justify-between p-4 flex-1">
+                      <CardHeader className="pb-3">
+                        <div className="space-y-2">
+                          <CardTitle className="text-xl text-white">{person.name}</CardTitle>
+                          <Badge className="bg-primary/20 text-primary border-primary/50 hover:bg-primary/30 w-fit">
+                            {person.idNumber}
+                          </Badge>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-white/80 mb-3">{person.rank}</p>
+                      </CardContent>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )
+      })}
+    </div>
+  </main>
       {/* Footer */}
       <footer className="bg-card/30 border-t border-border mt-16 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-8">
