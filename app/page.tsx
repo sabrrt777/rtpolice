@@ -117,7 +117,7 @@ export default function PolicePage() {
         </div>
       </header>
 
-      {/* Main Content */}
+  {/* Main Content */}
   <main className="container mx-auto px-6 py-12">
     <div className="space-y-12">
       {Object.entries(personnelData).map(([category, members]) => {
@@ -140,35 +140,42 @@ export default function PolicePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {members.map((person) => (
                 <Link key={person.id} href={`/profile/${person.id}`}>
-                  <Card className="flex flex-col lg:flex-row items-center lg:items-stretch rounded-2xl border border-primary/30 bg-card/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:border-primary/60">
+                  <Card className="rounded-2xl border-2 border-primary/30 bg-card/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:border-primary/60 cursor-pointer">
                     
-                    {/* الصورة - يسار الكرت */}
-                    {person.image && (
-                      <div className="relative w-full lg:w-1/3 aspect-square overflow-hidden border-r lg:border-r border-primary/20">
+                    {/* الصورة - مربعة بحواف وظل */}
+                    <div className="relative">
+                      <div className="aspect-square rounded-2xl overflow-hidden border-4 border-primary/30 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
                         <Image
-                          src={person.image || "/placeholder.svg"}
+                          src={
+                            person.image ||
+                            "/placeholder.svg?height=300&width=300&query=professional police officer portrait"
+                          }
                           alt={person.name}
-                          fill
-                          className="object-cover rounded-none transition-transform duration-300 hover:scale-110"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          width={300}
+                          height={300}
+                          className="w-full h-full object-cover"
                         />
                       </div>
-                    )}
-
-                    {/* المحتوى - يمين الصورة */}
-                    <div className="flex flex-col justify-between p-5 flex-1">
-                      <CardHeader className="pb-3">
-                        <div className="space-y-2">
-                          <CardTitle className="text-2xl font-semibold text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">
-                            {person.name}
-                          </CardTitle>
-                          <Badge className="bg-primary/20 text-primary border-primary/50 hover:bg-primary/30 w-fit">
-                            {person.idNumber}
-                          </Badge>
+                      {/* أيقونة الرتبة - أسفل يمين */}
+                      <div className="absolute -bottom-4 -right-4">
+                        <div className="bg-primary/20 backdrop-blur-sm rounded-full p-3 border border-primary/30">
+                          {getRankIcon(person.category)}
                         </div>
+                      </div>
+                    </div>
+
+                    {/* المحتوى - تحت الصورة */}
+                    <div className="p-5 text-center">
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-xl text-white">
+                          {person.name}
+                        </CardTitle>
                       </CardHeader>
+                      <Badge className="bg-primary/20 text-primary border-primary/50 hover:bg-primary/30 mb-3">
+                        {person.idNumber}
+                      </Badge>
                       <CardContent>
-                        <p className="text-white/80 text-lg">{person.rank}</p>
+                        <p className="text-white/80">{person.rank}</p>
                       </CardContent>
                     </div>
                   </Card>
