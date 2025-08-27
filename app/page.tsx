@@ -139,10 +139,11 @@ export default function PolicePage() {
                 </div>
 
                 {/* شبكة الكروت */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="overflow-x-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-w-fit">
                   {members.map((person) => (
                     <Link key={person.id} href={`/profile/${person.id}`}>
-                      <Card className="flex items-center gap-6 rounded-2xl border border-primary/30 bg-card/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:border-primary/60 cursor-pointer p-5">
+                      <Card className="flex items-center gap-6 rounded-2xl border border-primary/30 bg-card/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] hover:border-primary/60 cursor-pointer p-5 min-w-[320px]">
                         
                         {/* الصورة يسار */}
                         <div className="relative w-32 h-32 flex-shrink-0">
@@ -194,7 +195,7 @@ export default function PolicePage() {
       <footer className="bg-card/30 border-t border-border mt-16 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-8">
           <div className="text-center">
-            <p className="text-sm text-white/70">جميع الحقوق محفوظة © 2025 -</p>
+            <p className="text-sm text-white/70">جميع الحقوق محفوظة © 2025</p>
           </div>
         </div>
       </footer>
